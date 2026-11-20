@@ -4,13 +4,13 @@
 
 **[포트폴리오 웹사이트](https://tomyfu.github.io/portfolio/)** · [프로젝트별 작업 기록](WORK.md) · [MQL5 공개 제품](https://www.mql5.com/ko/market/product/208585)
 
-[![AiFX 예시 시장 지도](assets/aifx-market.jpg)](https://tomyfu.github.io/portfolio/demos/aifx.html)
+[![FIBO 터미널의 금 5분봉과 피보나치 분석 화면](assets/fibo-terminal.svg)](https://tomyfu.github.io/portfolio/demos/fibo-terminal.html)
 
 ## 직접 확인할 수 있는 작업
 
 | 프로젝트 | 해결한 문제 | 확인할 수 있는 결과 |
 | --- | --- | --- |
-| **AiFX** | 여러 종목의 신호와 판단 시점을 한 화면에서 확인 | Windows x64 시제품 · [브라우저 리플레이](https://tomyfu.github.io/portfolio/demos/aifx.html) |
+| **FIBO 터미널** | 금 5분봉의 되돌림 레벨과 손절·익절 거리 확인 | MT5 분석 화면 시안 · [터미널 체험](https://tomyfu.github.io/portfolio/demos/fibo-terminal.html) |
 | **DataDesk** | 발주서 36장과 사내 주문대장 40장의 차이 추적 | 업무 화면 시안 · [주문 대조 데모](https://tomyfu.github.io/portfolio/demos/datadesk.html) |
 | **Partner Trade** | MT5의 진입·청산 기록을 같은 포지션으로 연결 | Next.js 웹·API 구현 · [사례 설명](WORK.md#partner) |
 | **FiboSwitch** | 다중 시간봉 전략을 사용자가 테스트할 수 있는 제품으로 배포 | [마켓 제품](https://www.mql5.com/ko/market/product/208585) · [설정 가이드](https://www.mql5.com/en/blogs/post/780817) |

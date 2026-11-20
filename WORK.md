@@ -4,20 +4,15 @@
 
 [포트폴리오 첫 화면](https://tomyfu.github.io/portfolio/) · [GitHub 개요](README.md)
 
-<a id="aifx"></a>
+<a id="fibo-terminal"></a>
 
-## AiFX
+## FIBO 터미널
 
-**EXE 프로토타입** · Windows x64 · HTML · JavaScript
+**MT5 분석 화면 시안 · 브라우저 데모**
 
-매수 표시 하나만으로는 어떤 조건이 충족됐는지, 다음 봉에서도 그 판단이 유효한지 설명하기 어려웠습니다. 종목 선택, 시세 차트, 판단 근거, 신호 기록을 한 흐름으로 설계했습니다. 브라우저에서 조작감을 먼저 확인하고 Windows x64 네이티브 창으로 확장했습니다.
+금(XAUUSD) 5분봉에 피보나치 되돌림선을 겹쳐 보고 손절·익절 설정을 함께 확인하는 분석 화면. 차트와 엔진·주문·세션 패널을 함께 배치한 시안을 바탕으로, 예시 시세에서 피보나치 선과 주문 거리를 조작해 볼 수 있도록 재구성했습니다.
 
-네이티브 시제품에서는 캔들을 선택하고 EMA 20이나 분석 표시를 전환할 수 있습니다. 공개한 브라우저판에서는 예시 GBP/USD 시세를 한 봉씩 넘기며 대기, 진입 후보, 구간 이탈을 확인할 수 있습니다.
-
-- 산출물 — AiFX_Native_v01_x64.exe · AiFX_Demo.html
-- 공개 범위 — 공개 데모는 고정된 예시 시세를 사용합니다. MT5 실시간 체결은 후속 연동 범위입니다.
-
-[사례 페이지](https://tomyfu.github.io/portfolio/projects/aifx.html) · [시장 리플레이 열기](https://tomyfu.github.io/portfolio/demos/aifx.html)
+[사례 페이지](https://tomyfu.github.io/portfolio/projects/fibo-terminal.html) · [터미널 체험](https://tomyfu.github.io/portfolio/demos/fibo-terminal.html)
 
 <a id="partner"></a>
 
