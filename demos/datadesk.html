@@ -1,0 +1,34 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DataDesk · 주문 수량 대조 데모</title><link rel="icon" href="../assets/mark.svg"><link rel="stylesheet" href="../assets/site.css"><style>
+main{padding:30px 0}.desk{background:white;border:1px solid #bfcbc5;border-radius:7px;overflow:hidden}.desk h1{margin:0;font-size:24px;letter-spacing:-.05em}.desk-head{background:#263e36;color:#fff;padding:13px 20px;display:flex;align-items:center;gap:15px}.desk-head small{color:#cddccf}.controls,.detail{padding:17px 20px}.controls{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;background:#f0f4ef}.controls label{cursor:pointer}.scroll{overflow:auto}table{border-collapse:collapse;width:100%;white-space:nowrap;text-align:left}th,td{font-size:14px;padding:11px 16px;border-bottom:1px solid #e5e9e3}th{color:#485a4e;background:#f6f7f3}.order{border:0;background:none;font-weight:700;color:#185741;text-decoration:underline;text-underline-offset:4px;padding:4px}tr.selected{background:#f0f7ee}.mismatch{color:#935818;font-weight:700}.detail h2{font-size:20px;margin-bottom:3px}.detail p{margin-bottom:12px}.values{display:grid;grid-template-columns:1fr 1fr;gap:12px}.values>div{padding:12px;background:#f4f5f0;border:1px solid #dde4d8}.values small,.values strong{display:block}.values strong{font-size:26px}.hint{font-size:14px;color:#526358;margin:14px 0}.back{display:inline-block;margin-bottom:16px}@media(max-width:540px){.controls,.detail,.desk-head{padding:13px}.desk-head{flex-wrap:wrap;gap:4px 12px}th,td{padding:8px}.values{gap:7px}}
+</style></head><body><main id="main" class="wrap"><a class="back" href="../projects/datadesk.html">← DataDesk 작업 소개</a><div class="desk"><header class="desk-head"><h1>DataDesk 주문대장</h1><small>포트폴리오용 예시 데이터</small></header><div class="controls"><label><input type="checkbox" id="only"> 수량이 다른 주문만 보기</label><span id="count" role="status"></span></div><div class="scroll"><table><thead><tr><th scope="col">주문번호</th><th scope="col">품목</th><th scope="col">옵션</th><th scope="col">대조 결과</th></tr></thead><tbody id="orders"></tbody></table></div><section class="detail" aria-live="polite"><h2 id="detail-title"></h2><p class="hint">선택한 주문의 자료별 수량</p><div class="values"><div><small>발주서 · XLSX</small><strong id="sheet"></strong></div><div><small>사내 주문대장 · DB</small><strong id="db"></strong></div></div><p id="delta" class="hint"></p></section></div><p class="hint">주문번호를 누르면 해당 발주서와 사내 기록을 비교할 수 있습니다.</p></main><script>
+const orders = [
+  { id: 'MG-1002', item: '와이드 팬츠', option: '블랙 / M', sheet: 36, db: 40 },
+  { id: 'MG-1008', item: '공연 셔츠', option: '화이트 / L', sheet: 24, db: 24 }
+];
+let current = orders[0].id;
+const byId = id => document.getElementById(id);
+function render() {
+  const visible = orders.filter(order => !byId('only').checked || order.sheet !== order.db);
+  if (!visible.some(order => order.id === current)) current = visible[0].id;
+  const active = visible.find(order => order.id === current);
+  const rows = visible.map(order => {
+    const row = document.createElement('tr');
+    row.classList.toggle('selected', order.id === current);
+    const select = document.createElement('button');
+    select.className = 'order'; select.type = 'button'; select.textContent = order.id;
+    select.setAttribute('aria-pressed', String(order.id === current));
+    select.addEventListener('click', () => { current = order.id; render(); byId(order.id).focus(); });
+    select.id = order.id; row.insertCell().append(select);
+    row.insertCell().textContent = order.item; row.insertCell().textContent = order.option;
+    const status = row.insertCell(); status.textContent = order.sheet === order.db ? '일치' : '수량 차이';
+    if (order.sheet !== order.db) status.className = 'mismatch';
+    return row;
+  });
+  byId('orders').replaceChildren(...rows); byId('count').textContent = visible.length + '건 표시';
+  byId('detail-title').textContent = active.id + ' · ' + active.item;
+  byId('sheet').textContent = active.sheet + '장'; byId('db').textContent = active.db + '장';
+  const delta = active.db - active.sheet;
+  byId('delta').textContent = delta ? '사내 주문대장의 수량이 발주서보다 ' + Math.abs(delta) + (delta > 0 ? '장 많습니다.' : '장 적습니다.') : '두 자료의 수량이 일치합니다.';
+}
+byId('only').addEventListener('change', render); render();
+</script></body></html>
